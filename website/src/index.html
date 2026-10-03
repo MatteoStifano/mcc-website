@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it" data-lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-it="MCC - Monopoli Coders Club" data-en="MCC - Monopoli Coders Club">MCC - Monopoli Coders Club</title>
+  <link rel="icon" href="mcc_logo.jpeg" type="image/jpeg">
+  <style>
+    :root {
+      --accent: #4a9fd8;
+      --accent-dark: #2f7fb8;
+      --text-primary: #1f2933;
+      --text-secondary: #52606d;
+      --bg: #f7fafc;
+      --card-bg: #ffffff;
+      --border: #e4e9ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-primary);
+      padding: 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 560px;
+      text-align: center;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 32px;
+      box-shadow: 0 10px 30px rgba(31, 41, 51, 0.06);
+      position: relative;
+    }
+
+    .lang-switch {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 0.85rem;
+    }
+
+    .lang-switch button {
+      background: none;
+      border: none;
+      font: inherit;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    .lang-switch button:hover {
+      color: var(--accent-dark);
+      border-bottom-color: var(--accent-dark);
+    }
+
+    .lang-switch button[aria-current="true"] {
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .lang-switch .sep {
+      color: var(--border);
+      margin: 0 6px;
+    }
+
+    img {
+      max-width: 260px;
+      width: 78%;
+      height: auto;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      color: #61aee6;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      margin: 8px 0 24px;
+    }
+
+    .about {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0 auto;
+      max-width: 440px;
+    }
+
+    footer {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    [data-i18n] {
+      display: none;
+    }
+
+    html[data-lang="it"] [data-i18n="it"],
+    html[data-lang="en"] [data-i18n="en"] {
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 32px 20px;
+      }
+
+      .lang-switch {
+        position: static;
+        display: block;
+        margin-bottom: 16px;
+        text-align: right;
+      }
+
+      .tagline {
+        font-size: 1rem;
+      }
+
+      .about {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <nav class="lang-switch" aria-label="Language selector">
+      <button type="button" data-set-lang="it" aria-current="true">IT</button>
+      <span class="sep">|</span>
+      <button type="button" data-set-lang="en">EN</button>
+    </nav>
+
+    <img src="mcc_logo.jpeg" alt="MCC - Monopoli Coders Club logo">
+
+    <p class="tagline" data-i18n="it"><!-- TODO: personalizza lo slogan -->We code. Together.</p>
+    <p class="tagline" data-i18n="en"><!-- TODO: customize tagline -->We code. Together.</p>
+
+    <p class="about" data-i18n="it">
+      <!-- TODO: personalizza il testo -->
+      Monopoli Coders Club è una community di sviluppatori, studenti e
+      appassionati di tecnologia con base a Monopoli. Ci incontriamo per
+      condividere conoscenze, lavorare su progetti e crescere insieme
+      attraverso workshop, talk e sessioni di coding pratico.
+    </p>
+    <p class="about" data-i18n="en">
+      <!-- TODO: customize about text -->
+      Monopoli Coders Club is a community of developers, students, and tech
+      enthusiasts based in Monopoli. We meet to share knowledge, work on
+      projects, and grow our skills together through workshops, talks, and
+      hands-on coding sessions.
+    </p>
+
+    <footer>&copy; <span id="year"></span> Monopoli Coders Club</footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const root = document.documentElement;
+    const buttons = document.querySelectorAll("[data-set-lang]");
+
+    function setLang(lang) {
+      root.setAttribute("data-lang", lang);
+      root.setAttribute("lang", lang);
+      buttons.forEach((btn) => {
+        btn.setAttribute("aria-current", String(btn.dataset.setLang === lang));
+      });
+      localStorage.setItem("mcc-lang", lang);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => setLang(btn.dataset.setLang));
+    });
+
+    const saved = localStorage.getItem("mcc-lang");
+    if (saved === "it" || saved === "en") {
+      setLang(saved);
+    }
+  </script>
+</body>
+</html>
