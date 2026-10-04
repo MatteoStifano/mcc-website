@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-it="MCC - Monopoli Coders Club" data-en="MCC - Monopoli Coders Club">MCC - Monopoli Coders Club</title>
+  <title data-it="Workshops - MCC - Monopoli Coders Club" data-en="Workshops - MCC - Monopoli Coders Club">Workshops - MCC - Monopoli Coders Club</title>
   <link rel="icon" href="mcc_logo.jpeg" type="image/jpeg">
   <style>
     :root {
@@ -91,19 +91,10 @@
       text-decoration: underline;
     }
 
-    img {
-      max-width: 260px;
-      width: 78%;
-      height: auto;
-      margin-bottom: 8px;
-    }
-
-    .tagline {
+    h1 {
       color: #61aee6;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.2px;
-      margin: 8px 0 24px;
+      font-size: 1.6rem;
+      margin: 16px 0 24px;
     }
 
     .about {
@@ -112,6 +103,77 @@
       line-height: 1.6;
       margin: 0 auto;
       max-width: 440px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin: 24px 0 8px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .gallery li {
+      margin: 0;
+    }
+
+    .gallery button {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0;
+      cursor: pointer;
+      overflow: hidden;
+      display: block;
+      width: 100%;
+    }
+
+    .gallery img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery button:hover img {
+      transform: scale(1.04);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 30, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 10;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
     }
 
     footer {
@@ -148,10 +210,6 @@
         text-align: right;
       }
 
-      .tagline {
-        font-size: 1rem;
-      }
-
       .about {
         font-size: 0.95rem;
       }
@@ -167,10 +225,10 @@
     </nav>
 
     <nav class="site-nav" aria-label="Site navigation">
+      <a href="index.html">&larr; MCC</a>
+      <span class="sep">|</span>
       <a href="chi-siamo.html" data-i18n="it">Chi siamo</a>
       <a href="chi-siamo.html" data-i18n="en">About us</a>
-      <span class="sep">|</span>
-      <a href="workshops.html">Workshops</a>
       <span class="sep">|</span>
       <a href="progetti.html" data-i18n="it">Progetti</a>
       <a href="progetti.html" data-i18n="en">Projects</a>
@@ -179,13 +237,47 @@
       <a href="contatti.html" data-i18n="en">Contacts</a>
     </nav>
 
-    <img src="mcc_logo.jpeg" alt="MCC - Monopoli Coders Club logo">
+    <h1 data-i18n="it">Workshops</h1>
+    <h1 data-i18n="en">Workshops</h1>
 
-    <p class="tagline" data-i18n="it">We code. Together.</p>
-    <p class="tagline" data-i18n="en">We code. Together.</p>
+    <p class="about" data-i18n="it">
+      Una raccolta dei workshop organizzati da Monopoli Coders Club:
+      incontri gratuiti e aperti a tutti, pensati per condividere strumenti e tecniche,
+      e crescere insieme come community.
+      Qui sotto trovi i poster delle sessioni passate, clicca su un'immagine
+      per ingrandirla.
+    </p>
+    <p class="about" data-i18n="en">
+      A collection of workshops organized by Monopoli Coders Club: free
+      events open to everyone, designed to share tools and techniques, and
+      grow together as a community. Below you'll find posters from past
+      sessions, click an image to enlarge it.
+    </p>
+
+    <ul class="gallery">
+      <li>
+        <figure>
+          <button type="button" data-full="workshops/workshop_0.jpeg" data-alt="Creating UI Tests via Playwright MCP">
+            <img src="workshops/workshop_0.jpeg" alt="Creating UI Tests via Playwright MCP poster" loading="lazy">
+          </button>
+        </figure>
+      </li>
+      <li>
+        <figure>
+          <button type="button" data-full="workshops/workshop_1.jpeg" data-alt="Dalla Fotogrammetria alla Spatial Intelligence">
+            <img src="workshops/workshop_1.jpeg" alt="Dalla Fotogrammetria alla Spatial Intelligence poster" loading="lazy">
+          </button>
+        </figure>
+      </li>
+    </ul>
 
     <footer>&copy; <span id="year"></span> Monopoli Coders Club</footer>
   </main>
+
+  <div class="lightbox" id="lightbox">
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <img src="" alt="" id="lightbox-img">
+  </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -210,6 +302,34 @@
     if (saved === "it" || saved === "en") {
       setLang(saved);
     }
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightbox.classList.add("open");
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightboxImg.src = "";
+    }
+
+    document.querySelectorAll(".gallery button").forEach((btn) => {
+      btn.addEventListener("click", () => openLightbox(btn.dataset.full, btn.dataset.alt));
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeLightbox();
+    });
   </script>
 </body>
 </html>
