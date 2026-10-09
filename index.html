@@ -126,6 +126,10 @@
       margin-bottom: 8px;
     }
 
+    .logo-dark { display: none; }
+    html[data-theme="dark"] .logo-light { display: none; }
+    html[data-theme="dark"] .logo-dark { display: inline; }
+
     .tagline {
       color: #61aee6;
       font-size: 1.1rem;
@@ -221,7 +225,8 @@
       <button type="button" class="theme-toggle" data-toggle-theme aria-label="Toggle dark mode">🌙</button>
     </nav>
 
-    <img src="mcc_logo.jpeg" alt="MCC - Monopoli Coders Club logo">
+    <img class="logo-light" src="mcc_logo.jpeg" alt="MCC - Monopoli Coders Club logo">
+    <img class="logo-dark" src="mcc_logo_dark.jpg" alt="MCC - Monopoli Coders Club logo">
 
     <nav class="site-nav" aria-label="Site navigation">
       <a href="chi-siamo.html" data-i18n="it">Chi siamo</a>
