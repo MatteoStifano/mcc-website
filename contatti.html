@@ -14,6 +14,18 @@
       --bg: #f7fafc;
       --card-bg: #ffffff;
       --border: #e4e9ef;
+      color-scheme: light;
+    }
+
+    html[data-theme="dark"] {
+      --accent: #4a9fd8;
+      --accent-dark: #61aee6;
+      --text-primary: #e5eaf0;
+      --text-secondary: #a3b0bd;
+      --bg: #0f1419;
+      --card-bg: #1a2129;
+      --border: #2c3744;
+      color-scheme: dark;
     }
 
     * {
@@ -30,6 +42,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text-primary);
       padding: 24px;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     main {
@@ -42,6 +55,7 @@
       padding: 48px 32px;
       box-shadow: 0 10px 30px rgba(31, 41, 51, 0.06);
       position: relative;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
 
     .lang-switch {
@@ -69,6 +83,13 @@
     .lang-switch button[aria-current="true"] {
       color: var(--accent-dark);
       font-weight: 600;
+    }
+
+    .lang-switch .theme-toggle {
+      border-bottom: none;
+      font-size: 1rem;
+      line-height: 1;
+      vertical-align: middle;
     }
 
     .lang-switch .sep {
@@ -177,6 +198,15 @@
       }
     }
   </style>
+  <script>
+    (function () {
+      var theme = localStorage.getItem("mcc-theme");
+      if (theme !== "dark" && theme !== "light") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
 </head>
 <body>
   <main>
@@ -184,6 +214,8 @@
       <button type="button" data-set-lang="it" aria-current="true">IT</button>
       <span class="sep">|</span>
       <button type="button" data-set-lang="en">EN</button>
+      <span class="sep">|</span>
+      <button type="button" class="theme-toggle" data-toggle-theme aria-label="Toggle dark mode">🌙</button>
     </nav>
 
     <nav class="site-nav" aria-label="Site navigation">
@@ -226,6 +258,20 @@
     if (saved === "it" || saved === "en") {
       setLang(saved);
     }
+
+    const themeBtn = document.querySelector("[data-toggle-theme]");
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      themeBtn.textContent = theme === "dark" ? "☀️" : "🌙";
+      localStorage.setItem("mcc-theme", theme);
+    }
+
+    themeBtn.textContent = root.getAttribute("data-theme") === "dark" ? "☀️" : "🌙";
+
+    themeBtn.addEventListener("click", () => {
+      applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    });
   </script>
 </body>
 </html>
