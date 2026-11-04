@@ -358,21 +358,41 @@
   }
 
   .brand-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--success);
-    box-shadow: 0 0 8px var(--success);
-    animation: softPulse 3.2s ease-in-out infinite;
+    color: #62a8e0;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1;
+    text-shadow: 0 0 8px #62a8e0;
   }
 
   .brand-name {
     color: #62a8e0;
-    font-family: var(--font-sans);
-    font-size: 1.15rem;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 8px #62a8e0;
     transition: color 0.5s;
+  }
+
+  .brand-cursor {
+    width: 0.6em;
+    height: 1.1em;
+    margin-left: -3px;
+    background: #62a8e0;
+    font-size: 1.1rem;
+    animation: cursorBlink 1.06s steps(1, end) infinite;
+  }
+
+  @keyframes cursorBlink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+
+  html.light .brand-dot,
+  html.light .brand-name {
+    text-shadow: none;
   }
 
   .brand-ver {
@@ -1280,8 +1300,9 @@
   <!-- TOPBAR -->
   <div class="topbar">
     <div class="brand">
-      <span class="brand-dot"></span>
+      <span class="brand-dot" aria-hidden="true">&gt;</span>
       <span class="brand-name">MCC</span>
+      <span class="brand-cursor" aria-hidden="true"></span>
       <span class="brand-ver">v1.0</span>
     </div>
     <div class="actions">
