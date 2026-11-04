@@ -822,39 +822,6 @@
     transform: scale(1.03);
   }
 
-  .workshop-item::after {
-    content: '';
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background:
-      rgba(0, 0, 0, 0.55)
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M15 3h6v6h-2V5h-4V3zm-9 12H3v6h6v-2H5v-4h2zm12 6v-2h4v-4h2v6h-6zM3 9V3h6v2H5v4H3z'/></svg>")
-      center / 15px no-repeat;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .workshop-item:hover::after {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  @media (hover: none) {
-    .workshop-item::after {
-      opacity: 0.9;
-      transform: scale(1);
-    }
-  }
-
   .workshop-caption {
     padding: 14px 16px;
     font-size: 0.82rem;
