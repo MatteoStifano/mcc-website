@@ -985,6 +985,29 @@
     color: #4ade80;
   }
 
+  .cmd-link-icon {
+    width: 1.2em;
+    height: 1.2em;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .cmd-link.wa .cmd-link-icon { color: #25D366; }
+  .cmd-link.ig .cmd-link-icon { color: #E1306C; }
+
+  .cmd-link.ig .cmd-link-prompt,
+  .cmd-link.ig .cmd-link-arrow {
+    color: #E1306C;
+  }
+
+  .cmd-link.ig .cmd-link-text::after {
+    background: linear-gradient(90deg, #E1306C, #F77737);
+  }
+
+  .cmd-link.ig:hover .cmd-link-arrow {
+    color: #F77737;
+  }
+
   /* ============ PAGE FOOTER ============ */
   .page-footer {
     position: relative;
@@ -1407,7 +1430,14 @@
           <div class="section-label" data-i18n="contactsLabel">Contatti</div>
           <a href="https://chat.whatsapp.com/Bu0LleFmWiv0bLo8nDVRU2" target="_blank" rel="noopener" class="cmd-link wa cmd-link-block">
             <span class="cmd-link-prompt">&gt;</span>
+            <svg class="cmd-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
             <span class="cmd-link-text" data-i18n="contactsCta">Entra nel gruppo WhatsApp</span>
+            <span class="cmd-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="https://www.instagram.com/monopoli_coders_club/" target="_blank" rel="noopener" class="cmd-link ig cmd-link-block">
+            <span class="cmd-link-prompt">&gt;</span>
+            <svg class="cmd-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><path d="M16.5 7.5v.01"/></svg>
+            <span class="cmd-link-text" data-i18n="contactsInstagram">Seguici su Instagram</span>
             <span class="cmd-link-arrow" aria-hidden="true">↗</span>
           </a>
         </article>
@@ -1571,6 +1601,7 @@
         projectsCta: 'Vedi su GitHub',
         contactsLabel: 'Contatti',
         contactsCta: 'Entra nel gruppo WhatsApp',
+        contactsInstagram: 'Seguici su Instagram',
         footerRight: 'Made with',
         footerRight2: 'in Monopoli'
       },
@@ -1592,6 +1623,7 @@
         projectsCta: 'View on GitHub',
         contactsLabel: 'Contacts',
         contactsCta: 'Join our WhatsApp group',
+        contactsInstagram: 'Follow us on Instagram',
         footerRight: 'Made with',
         footerRight2: 'in Monopoli'
       }
