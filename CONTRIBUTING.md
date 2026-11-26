@@ -99,8 +99,12 @@ public/                       file copiati così come sono
   assets/css/blog.css         stili del blog
   assets/js/site.js           homepage: sfondo animato, evento, lightbox
   assets/js/page.js           pagine del blog: cambio tema
+  assets/js/vendor/           three.min.js (MIT), servito dal sito invece che da una CDN
+  third-party-licenses.txt    licenze di three.js e dei font Geist (obbligatorie: aggiornare se cambiano)
   workshops/                  immagini dei poster
 .github/workflows/deploy.yml  build e pubblicazione su GitHub Pages
 ```
 
 La homepage esiste in italiano (`/`) e inglese (`/en/`). Per aggiungere o modificare un testo, aggiorna entrambe le lingue in `src/i18n/ui.ts`: se una chiave manca in una lingua, l'editor lo segnala.
+
+I font (Geist e Geist Mono) arrivano dai pacchetti npm `@fontsource-variable/*` e vengono inclusi nel sito durante la build: nessun font viene caricato da Google. Anche Three.js è servito dal sito stesso. Se aggiungi o cambi una di queste risorse, aggiorna `public/third-party-licenses.txt`.

@@ -1,6 +1,9 @@
 ---
 // Shared <head> contents: SEO, social previews, icons, fonts and the theme
 // restore script. Page-specific tags go in the default slot.
+// Fonts are bundled with the site: visitors' browsers never contact Google
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -40,9 +43,6 @@ const ogImage = new URL('/assets/img/og-image.jpg', Astro.site);
 <link rel="alternate" type="application/rss+xml" title="MCC Blog" href="/blog/rss.xml">
 <link rel="sitemap" href="/sitemap-index.xml">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <script is:inline>
   try {

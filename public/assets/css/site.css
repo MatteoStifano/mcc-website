@@ -43,8 +43,8 @@
   --theme-btn-bg: rgba(255, 255, 255, 0.05);
   --theme-btn-border: rgba(255, 255, 255, 0.1);
 
-  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: 'Geist Mono', 'SF Mono', 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
+  --font-sans: 'Geist Variable', 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', 'SF Mono', 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
 
   --boot-delay: 2.3s;
 
