@@ -43,9 +43,13 @@ const events = defineCollection({
 });
 
 const workshops = defineCollection({
-  loader: file('src/data/workshops.json'),
+  // Collections don't keep file order, so remember each poster's position
+  loader: file('src/data/workshops.json', {
+    parser: (text) => JSON.parse(text).map((workshop: Record<string, unknown>, index: number) => ({ ...workshop, order: index })),
+  }),
   schema: z.strictObject({
     id: z.string(),
+    order: z.number().int(),
     title: localized,
     alt: z.string(),
     image: z.string().startsWith('/workshops/'),
