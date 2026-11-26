@@ -20,6 +20,9 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, date, author, github, tags, language } = post.data;
 const { Content } = await render(post);
+
+// Initials instead of a GitHub avatar: loading the picture would send the reader's IP to GitHub
+const initials = author.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => Array.from(word)[0].toUpperCase()).join('');
 ---
 <BlogLayout title={`${title} · MCC Blog`} description={description} lang={language} ogType="article">
   <Fragment slot="head">
@@ -47,7 +50,7 @@ const { Content } = await render(post);
 
       <footer class="post-footer">
         <div class="post-author">
-          {github && <img src={`https://github.com/${github}.png?size=96`} alt="" width="48" height="48" loading="lazy">}
+          <div class="post-avatar" aria-hidden="true">{initials}</div>
           <div>
             <div class="post-author-name">{author}</div>
             {github && <a href={`https://github.com/${github}`} target="_blank" rel="noopener">@{github}</a>}

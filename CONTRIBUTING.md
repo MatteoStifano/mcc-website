@@ -54,7 +54,7 @@ title: "Titolo dell'articolo"
 description: "Una frase di riassunto, usata nelle anteprime e sui social."
 date: 2026-12-01
 author: Nome Cognome
-github: username-github   # opzionale, mostra il tuo avatar
+github: username-github   # opzionale, mostra il link al tuo profilo
 tags: [tag1, tag2]        # opzionale
 language: it              # opzionale: it (predefinito) oppure en
 draft: true               # opzionale: l'articolo non viene pubblicato
