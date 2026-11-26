@@ -48,7 +48,7 @@
 
   --boot-delay: 2.3s;
 
-  /* Background of mcc_logo_dark.jpg; light theme uses mcc_logo.jpeg's white */
+  /* Background of the dark logo; the light theme uses the bright logo's white */
   --logo-bg: #1b222a;
 }
 
