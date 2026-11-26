@@ -1,0 +1,42 @@
+---
+import { useTranslations, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+
+const nav = [
+  { href: '#chi-siamo', label: t('navAbout') },
+  { href: '#workshops', label: t('navWorkshops') },
+  { href: '#blog', label: t('navBlog') },
+  { href: '#progetti', label: t('navProjects') },
+  { href: '#contatti', label: t('navContacts') },
+];
+---
+<section class="hero-section">
+  <div class="hero-card-wrap">
+    <div class="card hero-card">
+      <a href="#top" class="logo-link" aria-label="Monopoli Coders Club">
+        <img
+          id="logo-img"
+          src="/assets/img/logo.png"
+          width="720"
+          height="409"
+          alt="Monopoli Coders Club"
+          class="logo-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="logo-text" style="display:none" aria-hidden="true">
+          <span>M</span><span>C</span><span>C</span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        {nav.map((item) => <a href={item.href}><span>{item.label}</span></a>)}
+      </nav>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true"><span>⌄</span></div>
+</section>

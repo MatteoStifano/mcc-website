@@ -1,0 +1,119 @@
+---
+import Head from '../Head.astro';
+import Section from '../Section.astro';
+import CmdLink from '../CmdLink.astro';
+import Topbar from './Topbar.astro';
+import Hero from './Hero.astro';
+import NextEvent from './NextEvent.astro';
+import ProposeTalk from './ProposeTalk.astro';
+import Workshops from './Workshops.astro';
+import BlogPreview from './BlogPreview.astro';
+import Contacts from './Contacts.astro';
+import { GITHUB_REPO, INSTAGRAM_URL } from '../../config';
+import { languages, homePath, useTranslations, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const alternates = (Object.keys(languages) as Lang[]).map((code) => ({ lang: code, path: homePath(code) }));
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Monopoli Coders Club',
+  alternateName: 'MCC',
+  url: new URL('/', Astro.site).href,
+  logo: new URL('/assets/img/apple-touch-icon.png', Astro.site).href,
+  location: {
+    '@type': 'Place',
+    name: 'Monopoli',
+    address: { '@type': 'PostalAddress', addressLocality: 'Monopoli', addressRegion: 'BA', addressCountry: 'IT' },
+  },
+  sameAs: [INSTAGRAM_URL, GITHUB_REPO],
+};
+---
+<!DOCTYPE html>
+<html lang={lang} class="custom-cursor">
+<head>
+  <Head title="MCC — Monopoli Coders Club" description={t('metaDescription')} lang={lang} alternates={alternates}>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organization)} />
+    <!-- Boot animation plays once per browser session -->
+    <script is:inline>
+      try {
+        if (sessionStorage.getItem('mcc-booted')) {
+          document.documentElement.classList.add('no-boot');
+        } else {
+          sessionStorage.setItem('mcc-booted', '1');
+        }
+      } catch (e) {}
+    </script>
+  </Head>
+</head>
+<body>
+
+  <div class="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-line"><span class="p">$</span> init mcc.club</div>
+      <div class="boot-line"><span class="p">&gt;</span> access granted</div>
+      <div class="boot-line"><span class="ok">✓</span> ready<span class="caret"></span></div>
+    </div>
+    <div class="boot-progress"></div>
+  </div>
+
+  <canvas id="shader-canvas"></canvas>
+  <div class="grid-overlay"></div>
+  <div class="noise"></div>
+
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <Topbar lang={lang} />
+
+  <main class="stage" id="top">
+    <Hero lang={lang} />
+
+    <div class="sections">
+      <NextEvent lang={lang} />
+
+      <ProposeTalk lang={lang} />
+
+      <Section id="chi-siamo" label={t('aboutLabel')}>
+        <p>{t('aboutText')}</p>
+      </Section>
+
+      <Workshops lang={lang} />
+
+      <BlogPreview lang={lang} />
+
+      <Section id="progetti" label={t('projectsLabel')}>
+        <div class="projects-grid">
+          <div class="sub-card">
+            <div class="sub-card-title">{t('projectName')}</div>
+            <p>{t('projectsText')}</p>
+            <CmdLink href={GITHUB_REPO}>{t('projectsCta')}</CmdLink>
+          </div>
+        </div>
+      </Section>
+
+      <Contacts lang={lang} />
+    </div>
+
+    <div class="page-footer">
+      <span>{t('footerMade')}</span>
+      <span class="heart">♥</span>
+      <span>{t('footerPlace')}</span>
+    </div>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label={t('posterDialog')}>
+    <button class="lightbox-close" type="button" aria-label={t('close')}><svg viewBox="0 0 24 24" width="40%" height="40%" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    <img class="lightbox-img" id="lightbox-img" alt="">
+  </div>
+
+  <script is:inline src="/assets/js/vendor/three.min.js"></script>
+  <script is:inline src="/assets/js/site.js"></script>
+</body>
+</html>

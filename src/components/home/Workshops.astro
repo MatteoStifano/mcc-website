@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Section from '../Section.astro';
+import { localize, useTranslations, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const workshops = (await getCollection('workshops')).sort((a, b) => a.data.order - b.data.order);
+---
+<Section id="workshops" label={t('workshopsLabel')}>
+  <p>{t('workshopsText')}</p>
+
+  <div class="workshops-grid">
+    {workshops.map(({ data }) => {
+      const title = localize(data.title, lang);
+      return (
+        <div class="workshop-item" role="button" tabindex="0" aria-label={`${t('openPoster')}: ${title}`}>
+          <img src={data.image} alt={data.alt} width={data.width} height={data.height} loading="lazy" decoding="async">
+          <div class="workshop-caption">{title}</div>
+        </div>
+      );
+    })}
+  </div>
+</Section>

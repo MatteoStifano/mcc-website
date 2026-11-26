@@ -1,0 +1,33 @@
+---
+import Section from '../Section.astro';
+import CmdLink from '../CmdLink.astro';
+import { TALK_PROPOSAL_URL } from '../../config';
+import { useTranslations, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+
+const formats = [
+  { name: t('talkTalk'), time: t('talkTalkTime') },
+  { name: t('talkLightning'), time: t('talkLightningTime') },
+  { name: t('talkWorkshop'), time: t('talkWorkshopTime') },
+];
+---
+<Section id="proponi-talk" label={t('talkLabel')}>
+  <p>{t('talkText')}</p>
+
+  <ul class="talk-formats">
+    {formats.map((format) => (
+      <li class="talk-format">
+        <span class="talk-format-name">{format.name}</span>
+        <span class="talk-format-time">{format.time}</span>
+      </li>
+    ))}
+  </ul>
+
+  <CmdLink href={TALK_PROPOSAL_URL}>{t('talkCta')}</CmdLink>
+  <p class="section-note">{t('talkNote')}</p>
+</Section>

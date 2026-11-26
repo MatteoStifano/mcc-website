@@ -1,0 +1,22 @@
+---
+// Terminal-style link: "> text ↗". External links open in a new tab.
+interface Props {
+  href: string;
+  variant?: 'wa' | 'ig';
+  block?: boolean;
+}
+
+const { href, variant, block = false } = Astro.props;
+const external = /^https?:/.test(href);
+---
+<a
+  href={href}
+  class:list={['cmd-link', variant, { 'cmd-link-block': block }]}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener' : undefined}
+>
+  <span class="cmd-link-prompt">&gt;</span>
+  <slot name="icon" />
+  <span class="cmd-link-text"><slot /></span>
+  <span class="cmd-link-arrow" aria-hidden="true">{external ? '↗' : '→'}</span>
+</a>
