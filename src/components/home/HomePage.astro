@@ -5,10 +5,11 @@ import CmdLink from '../CmdLink.astro';
 import Topbar from './Topbar.astro';
 import Hero from './Hero.astro';
 import NextEvent from './NextEvent.astro';
+import ProposeTalk from './ProposeTalk.astro';
 import Workshops from './Workshops.astro';
 import BlogPreview from './BlogPreview.astro';
 import Contacts from './Contacts.astro';
-import { GITHUB_REPO } from '../../lib/blog';
+import { GITHUB_REPO, INSTAGRAM_URL } from '../../config';
 import { languages, homePath, useTranslations, type Lang } from '../../i18n/ui';
 
 interface Props {
@@ -31,7 +32,7 @@ const organization = {
     name: 'Monopoli',
     address: { '@type': 'PostalAddress', addressLocality: 'Monopoli', addressRegion: 'BA', addressCountry: 'IT' },
   },
-  sameAs: ['https://www.instagram.com/monopoli_coders_club/', GITHUB_REPO],
+  sameAs: [INSTAGRAM_URL, GITHUB_REPO],
 };
 ---
 <!DOCTYPE html>
@@ -76,6 +77,8 @@ const organization = {
 
     <div class="sections">
       <NextEvent lang={lang} />
+
+      <ProposeTalk lang={lang} />
 
       <Section id="chi-siamo" label={t('aboutLabel')}>
         <p>{t('aboutText')}</p>

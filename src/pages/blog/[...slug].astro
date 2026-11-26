@@ -2,9 +2,10 @@
 import { render } from 'astro:content';
 import BlogLayout from '../../layouts/BlogLayout.astro';
 import CmdLink from '../../components/CmdLink.astro';
+import { GITHUB_REPO } from '../../config';
 import {
   getPublishedPosts, postSlug, formatDate, readingMinutes,
-  GITHUB_REPO, CONTRIBUTING_POSTS, type Post,
+  CONTRIBUTING_POSTS, type Post,
 } from '../../lib/blog';
 
 export async function getStaticPaths() {

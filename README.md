@@ -10,6 +10,7 @@ Sito della community di sviluppatori, studenti e appassionati di tecnologia di M
 
 - **Hai organizzato un evento?** Aggiungilo in [`src/data/events.json`](src/data/events.json).
 - **Vuoi scrivere un articolo?** Aggiungi un file Markdown in [`src/content/blog/`](src/content/blog/).
+- **Vuoi tenere un talk?** Usa il modulo [Proponi un talk](https://github.com/MatteoStifano/mcc-website/issues/new?template=proposta-talk.yml).
 - **Vuoi migliorare il sito?** Apri una issue o una pull request.
 
 I dettagli sono in [CONTRIBUTING.md](CONTRIBUTING.md).

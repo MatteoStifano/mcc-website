@@ -1,8 +1,8 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { GITHUB_REPO } from '../config';
 
 export type Post = CollectionEntry<'blog'>;
 
-export const GITHUB_REPO = 'https://github.com/MatteoStifano/mcc-website';
 export const CONTRIBUTING_POSTS = `${GITHUB_REPO}/blob/main/CONTRIBUTING.md#scrivere-un-articolo`;
 
 // Published = not a draft and not dated in the future (relative to build time)

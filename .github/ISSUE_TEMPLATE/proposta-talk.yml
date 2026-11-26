@@ -1,0 +1,85 @@
+name: Proponi un talk / Propose a talk
+description: Proponi un talk, un lightning talk o un workshop per un incontro MCC · Propose a talk, lightning talk or workshop for an MCC meetup
+title: "[Talk] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazie! Non serve essere esperti: basta avere qualcosa da raccontare. Gli organizzatori ti risponderanno qui.
+        Thanks! You don't need to be an expert, just have something to share. The organizers will reply here.
+
+        ⚠️ Questa issue è pubblica · This issue is public.
+
+  - type: input
+    id: title
+    attributes:
+      label: Titolo / Title
+      placeholder: "Es. Debug di test end-to-end con Playwright"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: format
+    attributes:
+      label: Formato / Format
+      options:
+        - Talk (20–30 min)
+        - Lightning talk (5–10 min)
+        - Workshop pratico / Hands-on workshop (1–2 h)
+    validations:
+      required: true
+
+  - type: textarea
+    id: abstract
+    attributes:
+      label: Di cosa parlerai? / What is it about?
+      description: Qualche riga su argomento, cosa imparerà il pubblico ed eventuali demo · A few lines on the topic, what people will learn and any demos.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: Livello / Level
+      options:
+        - Base / Beginner
+        - Intermedio / Intermediate
+        - Avanzato / Advanced
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Lingua / Language
+      options:
+        - Italiano
+        - English
+    validations:
+      required: true
+
+  - type: input
+    id: speaker
+    attributes:
+      label: Nome / Name
+      description: Come vuoi comparire sul poster · How you'd like to appear on the poster.
+    validations:
+      required: true
+
+  - type: textarea
+    id: bio
+    attributes:
+      label: Due righe su di te / About you
+      description: Facoltativo · Optional. Lavoro, progetti, link (LinkedIn, sito, GitHub).
+
+  - type: input
+    id: availability
+    attributes:
+      label: Disponibilità / Availability
+      description: Facoltativo · Optional. Mesi o giorni preferiti · Preferred months or days.
+
+  - type: textarea
+    id: needs
+    attributes:
+      label: Ti serve qualcosa? / Anything you need?
+      description: Facoltativo · Optional. Es. proiettore, prese per i partecipanti, Wi-Fi, materiale per il workshop.

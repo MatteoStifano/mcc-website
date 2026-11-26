@@ -36,6 +36,12 @@ Campi diversi da questi vengono rifiutati, così un errore di battitura (per ese
 
 Dopo l'evento, aggiungi il poster in [`src/data/workshops.json`](src/data/workshops.json) (immagine in `public/workshops/`, larga al massimo 1000px; `width` e `height` sono le sue dimensioni in pixel).
 
+## Proporre un talk
+
+Il pulsante "Proponi il tuo talk" in homepage apre il modulo [`.github/ISSUE_TEMPLATE/proposta-talk.yml`](.github/ISSUE_TEMPLATE/proposta-talk.yml): ogni proposta diventa una issue con titolo `[Talk] ...`, dove gli organizzatori possono rispondere. Le issue sono pubbliche.
+
+Per usare un altro modulo (per esempio Tally o Google Forms, se si preferisce raccogliere proposte in privato), basta cambiare `TALK_PROPOSAL_URL` in [`src/config.ts`](src/config.ts).
+
 ## Scrivere un articolo
 
 Gli articoli sono file Markdown nella cartella [`src/content/blog/`](src/content/blog/). Il nome del file diventa l'indirizzo dell'articolo: `src/content/blog/debug-con-playwright.md` → `/blog/2026/12/debug-con-playwright/`. La guida completa, che è anche un articolo di esempio, è [`come-scrivere-un-articolo.md`](src/content/blog/come-scrivere-un-articolo.md).
@@ -81,6 +87,7 @@ src/content.config.ts         schemi di articoli, eventi e workshop
 src/content/blog/             articoli del blog (Markdown)
 src/data/events.json          eventi
 src/data/workshops.json       poster dei workshop passati
+src/config.ts                 link usati nel sito (GitHub, WhatsApp, modulo per i talk)
 src/i18n/ui.ts                testi della homepage in italiano e inglese
 src/pages/                    una pagina per file: / , /en/ , /blog/ , articoli, feed RSS
 src/components/               parti riutilizzabili (head, sezioni, anteprima articolo)
