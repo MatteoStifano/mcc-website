@@ -1,0 +1,26 @@
+---
+import Section from '../Section.astro';
+import CmdLink from '../CmdLink.astro';
+import PostCard from '../PostCard.astro';
+import { getPublishedPosts, CONTRIBUTING_POSTS } from '../../lib/blog';
+import { useTranslations, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+const latest = (await getPublishedPosts()).slice(0, 3);
+---
+<Section id="blog" label={t('blogLabel')}>
+  <p>{t('blogText')}</p>
+  <div class="posts-list">
+    {latest.length
+      ? latest.map((post) => <PostCard post={post} />)
+      : <p>{t('blogEmpty')}</p>}
+  </div>
+  <div class="section-actions">
+    <CmdLink href="/blog/">{t('blogAll')}</CmdLink>
+    <CmdLink href={CONTRIBUTING_POSTS}>{t('blogWrite')}</CmdLink>
+  </div>
+</Section>

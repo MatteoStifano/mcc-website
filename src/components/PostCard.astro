@@ -1,0 +1,20 @@
+---
+// Post preview card, used by the blog list and the homepage
+import { formatDate, postUrl, type Post } from '../lib/blog';
+
+interface Props {
+  post: Post;
+  heading?: 'h2' | 'h3';
+}
+
+const { post, heading: Heading = 'h3' } = Astro.props;
+const { title, description, author, tags, language } = post.data;
+---
+<a class="sub-card" href={postUrl(post)} hreflang={language}>
+  <div class="post-meta">
+    {formatDate(post.data.date)} · {author}
+    {tags.slice(0, 3).map((tag) => <> <span class="tag">#{tag}</span></>)}
+  </div>
+  <Heading class="sub-card-title" lang={language}>{title}</Heading>
+  <p lang={language}>{description}</p>
+</a>

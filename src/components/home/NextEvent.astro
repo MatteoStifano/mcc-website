@@ -1,0 +1,33 @@
+---
+// The event list is embedded as JSON; site.js picks the first one that hasn't
+// ended yet when the page is viewed, so the block never goes stale between deploys.
+import { getCollection } from 'astro:content';
+import Section from '../Section.astro';
+import { useTranslations, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+
+const events = (await getCollection('events')).map(({ data: { id, ...event } }) => event);
+
+const strings = {
+  eventNone: t('eventNone'),
+  eventNoneCta: t('eventNoneCta'),
+  eventSignup: t('eventSignup'),
+  eventCalendar: t('eventCalendar'),
+  eventToday: t('eventToday'),
+  eventTomorrow: t('eventTomorrow'),
+  eventInDays: t('eventInDays'),
+};
+
+// Safe to place inside <script>: no "</script>" can appear in the output
+const toJson = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003c');
+---
+<Section id="prossimo-evento" label={t('eventLabel')}>
+  <div id="event-body" aria-live="polite"></div>
+</Section>
+<script is:inline id="events-data" type="application/json" set:html={toJson(events)} />
+<script is:inline id="event-strings" type="application/json" set:html={toJson(strings)} />

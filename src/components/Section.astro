@@ -1,0 +1,15 @@
+---
+// A homepage section: glass card with a pill label
+interface Props {
+  id: string;
+  label: string;
+}
+
+const { id, label } = Astro.props;
+---
+<div class="section-wrap" id={id}>
+  <article class="card section-card">
+    <div class="section-label">{label}</div>
+    <slot />
+  </article>
+</div>

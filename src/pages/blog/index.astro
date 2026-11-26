@@ -1,0 +1,27 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import CmdLink from '../../components/CmdLink.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedPosts, CONTRIBUTING_POSTS } from '../../lib/blog';
+
+const posts = await getPublishedPosts();
+---
+<BlogLayout title="Blog · Monopoli Coders Club" description="Articoli, guide e appunti scritti dai membri del Monopoli Coders Club.">
+  <div class="blog-wrap">
+    <header class="card section-card">
+      <div class="section-label">Blog</div>
+      <h1 class="post-title">Dalla community, per la community</h1>
+      <p>Articoli, guide e appunti scritti dai membri del Monopoli Coders Club. Hai risolto un problema interessante, preparato un workshop o provato un nuovo strumento? Scrivilo qui: basta un file Markdown e una pull request.</p>
+      <div class="section-actions">
+        <CmdLink href={CONTRIBUTING_POSTS}>Scrivi un articolo</CmdLink>
+        <CmdLink href="/blog/rss.xml">Feed RSS</CmdLink>
+      </div>
+    </header>
+
+    <div class="posts-list">
+      {posts.length
+        ? posts.map((post) => <PostCard post={post} heading="h2" />)
+        : <p class="empty">Ancora nessun articolo: il primo potrebbe essere il tuo.</p>}
+    </div>
+  </div>
+</BlogLayout>

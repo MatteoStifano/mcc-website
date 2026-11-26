@@ -1,0 +1,26 @@
+[
+  {
+    "id": "playwright-mcp",
+    "title": "Creating UI Tests via Playwright MCP",
+    "alt": "Creating UI Tests via Playwright MCP",
+    "image": "/workshops/workshop_0.jpeg",
+    "width": 572,
+    "height": 1024
+  },
+  {
+    "id": "spatial-intelligence",
+    "title": "Dalla Fotogrammetria alla Spatial Intelligence",
+    "alt": "Dalla Fotogrammetria alla Spatial Intelligence",
+    "image": "/workshops/workshop_1.jpeg",
+    "width": 848,
+    "height": 1264
+  },
+  {
+    "id": "idea-robot",
+    "title": "Dall'Idea al Robot",
+    "alt": "Dall'Idea al Robot: Prototipazione Robotica ed Embedded",
+    "image": "/workshops/workshop_2.jpeg",
+    "width": 1000,
+    "height": 1491
+  }
+]
